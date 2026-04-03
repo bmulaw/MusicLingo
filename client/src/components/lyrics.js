@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import french_lyrics from '../example/es_lyrics.json'
+import cleanLyricHtml from './util/util'
 
 export default function Lyric() {
     const [count, setCount] =  useState(0);
@@ -11,8 +12,6 @@ export default function Lyric() {
         await fetch('https://api.lyrics.ovh/v1/bad%20bunny/nuevayol')
         .then(res => res.json())
         .then(data => setApiLyrics(data.lyrics))
-        
-        console.log("fetched bad bunny song");
     }
 
     async function translateLyric(lyric) {
@@ -27,12 +26,7 @@ export default function Lyric() {
             console.log("listening to Aventura with lyric: ", {lyric});
         }
         
-        let clean_lyric = lyric.replaceAll('<p>', '')
-                            .replaceAll('</p>', '')
-                            .replaceAll('<i>', '')
-                            .replaceAll('</i>', '')
-                            .replaceAll('</a>', '')
-                            .replaceAll('&amp', '');
+        let clean_lyric = cleanLyricHtml(lyric);
         let lyric_array = clean_lyric.split('<br>');
 
         return (
