@@ -12,21 +12,23 @@ class Song():
     def __init__(self, songRequest: str, translateLanguage: str) -> None:
         self.songRequest = songRequest
         self.translatedLangauge = translateLanguage
-        print("songRequest")
+        print("init songRequest")
         self.AventuraLyric = "No, no es amor Lo que tú sientes se llama obsesión Una ilusión En tu pensamiento Que te hace hacer cosas Así funciona el corazón"
         self.BadBunnyLyric = "Si te quieres divertir con encanto y con primor"
 
     def getSongLyrics(self) -> str:
-        print('hello')
-        match self.getSongLyrics():
-            case "Aventura":
-                return self.AventuraLyric
-            case "Bad Bunny":
-                return self.BadBunnyLyric
+        print('getSongLyrics: hello')
+        songRequest = self.getSongLyrics()
+        if songRequest == "Aventura":
+            return self.AventuraLyric
+        if songRequest == "Bad Bunny":
+            return self.BadBunnyLyric
 
-    def getSongRequest(self):
+    def getSongRequest(self) -> str:
         return self.songRequest
 
 song = Song("Aventura", "no")
 print(song.songRequest)
+print("calling getSongLyrics")
 print(song.getSongLyrics())
+print("calling getSongLyrics")
